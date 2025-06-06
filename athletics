@@ -1,0 +1,116 @@
+//codes
+1. Show first 15 rows
+
+SELECT * FROM athlete_events LIMIT 10;
+
+2. Athletes who participated in 2012
+
+SELECT Name, Sport, Team
+
+FROM athlete_events
+
+WHERE Year = 2012;
+
+3. List athletes by age (oldest first)
+
+SELECT Name, Age, Team
+
+FROM athlete_events
+
+ORDER BY Age DESC
+
+LIMIT 10;
+
+4. Count of athletes by sport
+
+SELECT Sport, COUNT(*) AS athlete_count
+
+FROM athlete_events
+
+GROUP BY Sport
+
+ORDER BY athlete_count DESC;
+
+5. JOINS — Simulated Example (Since there's only 1 table)
+
+SELECT a1.Name, a1.Sport, a2.Year
+
+FROM athlete_events a1
+
+INNER JOIN athlete_events a2
+
+ON a1.ID = a2.ID
+
+WHERE a1.Medal = 'Gold' AND a2.Year = 2016
+
+LIMIT 10;
+
+6. Athletes older than average age
+
+SELECT Name, Age
+
+FROM athlete_events
+
+WHERE Age > (SELECT AVG(Age) FROM athlete_events);
+
+7. Sport with most gold medals
+
+SELECT Sport, COUNT(*) AS gold_medals
+
+FROM athlete_events
+
+WHERE Medal = 'Gold'
+
+GROUP BY Sport
+
+ORDER BY gold_medals DESC
+
+LIMIT 1;
+
+8. Average height by sport
+
+SELECT Sport, AVG(Height) AS avg_height
+
+FROM athlete_events
+
+GROUP BY Sport;
+
+9. Total medals per team
+
+SELECT Team, COUNT(*) AS total_medals
+
+FROM athlete_events
+
+WHERE Medal != 'N/A'
+
+GROUP BY Team
+
+ORDER BY total_medals DESC
+
+LIMIT 10;
+
+10. Create View
+
+DROP VIEW IF EXISTS MedalWinners;
+
+CREATE VIEW MedalWinners AS
+
+SELECT Name, Sport, Team, Medal, Year
+
+FROM athlete_events
+
+WHERE Medal IS NOT NULL AND Medal != 'N/A';
+
+You can query it like a regular table:
+
+    SELECT * FROM MedalWinners LIMIT 10;
+
+11. Optimize Queries with Indexes
+
+CREATE INDEX idx_medal ON athlete_events(Medal);
+
+CREATE INDEX idx_team_year ON athlete_events(Team, Year);
+
+To check which indexes exist:
+
+    PRAGMA index_list('athlete_events');
