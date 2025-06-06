@@ -2,7 +2,7 @@
 
 (a) Basic SQL Queries: SELECT, WHERE, ORDER BY, GROUP BY
 
-1. select * from athlete_events limit 10;
+1. select * from athlete_events limit 15;
    
 Explanation: Fetches the first 10 rows from the table to give you a quick look at the data.
 
