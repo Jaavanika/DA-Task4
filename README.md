@@ -1,5 +1,9 @@
 # DA-Task4
 
+dataset:
+
+![image](https://github.com/user-attachments/assets/4fe5ea6a-0dcd-40a9-a869-97bbe345d444)
+
 (a) Basic SQL Queries: SELECT, WHERE, ORDER BY, GROUP BY
 
 1. select * from athlete_events limit 15;
